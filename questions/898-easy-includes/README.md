@@ -8,5 +8,14 @@ For example
 type isPillarMen = Includes<['Kars', 'Esidisi', 'Wamuu', 'Santana'], 'Dio'> // expected to be `false`
 ```
 
+answer
+
+```ts
+type Includes<T extends readonly any[], U> = true extends ToSameType<T[number], U> ? true: false;
+
+type ToSameType<Type, U> = Type extends boolean ? SameType<U, boolean> : SameType<U, Type>; 
+
+type SameType<T, R> = R | T extends T & R ? true : false;
+```
 
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/898/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/898/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
