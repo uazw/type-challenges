@@ -3,4 +3,14 @@
 Get an `Object` that is the difference between `O` & `O1`
 
 
+answer
+
+```ts
+type Merge<T, R, U = Omit<T, keyof R> & R > = {
+  [P in keyof U]: U[P]
+}
+
+type Diff<O, O1> = Merge<Omit<O, keyof O1>, Omit<O1, keyof O>>
+```
+
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/645/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/645/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <!--info-footer-end-->
