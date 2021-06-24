@@ -26,4 +26,15 @@ type Expected = {
 const todo: DeepReadonly<X> // should be same as `Expected`
 ```
 
+```ts
+
+type Primitive = string | number | boolean | null | undefined | Function;
+
+type DeepReadonly<T, U = Holder<T>> = U extends Holder<infer K> ? {
+  readonly[P in keyof K]: K[P] extends Primitive ? K[P]:  DeepReadonly<K[P]>
+} :never;
+
+interface Holder<T> {};
+```
+
 <!--info-footer-start--><br><a href="../../README.md" target="_blank"><img src="https://img.shields.io/badge/-Back-grey" alt="Back"/></a> <a href="https://tsch.js.org/9/answer" target="_blank"><img src="https://img.shields.io/badge/-Share%20your%20Solutions-teal" alt="Share your Solutions"/></a> <a href="https://tsch.js.org/9/solutions" target="_blank"><img src="https://img.shields.io/badge/-Check%20out%20Solutions-de5a77?logo=awesome-lists&logoColor=white" alt="Check out Solutions"/></a> <hr><h3>Related Challenges</h3><a href="https://github.com/type-challenges/type-challenges/blob/master/questions/7-easy-readonly/README.md" target="_blank"><img src="https://img.shields.io/badge/-7%E3%83%BBReadonly-7aad0c" alt="7・Readonly"/></a>  <a href="https://github.com/type-challenges/type-challenges/blob/master/questions/8-medium-readonly-2/README.md" target="_blank"><img src="https://img.shields.io/badge/-8%E3%83%BBReadonly%202-d9901a" alt="8・Readonly 2"/></a> <!--info-footer-end-->
